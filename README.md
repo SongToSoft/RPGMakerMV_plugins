@@ -1,0 +1,2 @@
+# RPGMakerMV_plugins
+RPGMakerMV_plugins
