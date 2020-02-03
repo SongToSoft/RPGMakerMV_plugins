@@ -79,7 +79,6 @@
 
     function CheckHotKeys(event)
     {
-        console.log(SceneManager._scene);
         switch (event.key)
         {
             case inventoryKey:
@@ -113,9 +112,11 @@
                 }
                 break;
             case quickSaveKey:
+                $gameSystem.onBeforeSave();
                 if (DataManager.saveGame(quickSaveSlotNumber))
                 {
                     console.log("Quick save success");
+                    StorageManager.cleanBackup(quickSaveSlotNumber);
                     // TODO: Make gui box with text, and remove it after 2 - 3 seconds
                     //SceneManager._scene.addChild(sprite);
                     //Game_Interpreter.prototype.wait(100000000000000000000n);
