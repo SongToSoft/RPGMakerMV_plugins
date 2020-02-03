@@ -3,7 +3,7 @@
 //=============================================================================
 
 /*:
- * @plugindesc Add few hot key in your project
+ * @plugindesc Add few hot keys in your project
  * @author SongToSoft
  * 
  * @help
