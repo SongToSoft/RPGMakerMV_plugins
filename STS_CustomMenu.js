@@ -86,15 +86,6 @@
     isVisibleSave = params["isVisibleSave"].toUpperCase() == "TRUE" ? true : false;
     isVisibleGameEnd = params["isVisibleGameEnd"].toUpperCase() == "TRUE" ? true : false;
 
-    console.log(isVisibleItem);
-    console.log(isVisibleSkill);
-    console.log(isVisibleStatus);
-    console.log(isVisibleFormation);
-    console.log(isVisibleContinue);
-    console.log(isVisibleOptions);
-    console.log(isVisibleSave);
-    console.log(isVisibleGameEnd);
-
     //Make method for set active Scene_Load
     Scene_Menu.prototype.commandContinue = function() 
     {
