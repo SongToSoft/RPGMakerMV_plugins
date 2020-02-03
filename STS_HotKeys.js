@@ -79,70 +79,54 @@
 
     function CheckHotKeys(event)
     {
-        if (event.key == inventoryKey)
+        console.log(SceneManager._scene);
+        switch (event.key)
         {
-            if (!(SceneManager._scene instanceof Scene_Item))
-            {
-                SceneManager.push(Scene_Item);
-            }
-        }
-        else
-        {
-            if (event.key == settingsKey)
-            {
+            case inventoryKey:
+                if (!(SceneManager._scene instanceof Scene_Item))
+                {
+                    SceneManager.push(Scene_Item);
+                }
+                break;
+            case settingsKey:
                 if (!(SceneManager._scene instanceof Scene_Options))
                 {
                     SceneManager.push(Scene_Options);
                 }
-            }
-            else
-            {
-                if (event.key == statusKey)
+                break;
+            case statusKey:
+                if (!(SceneManager._scene instanceof Scene_Status))
                 {
-                    if (!(SceneManager._scene instanceof Scene_Status))
-                    {
-                        SceneManager.push(Scene_Status);
-                    }
+                    SceneManager.push(Scene_Status);
+                }
+                break;
+            case saveKey:
+                if (!(SceneManager._scene instanceof Scene_Save))
+                {
+                    SceneManager.push(Scene_Save);
+                }
+                break;
+            case loadKey:
+                if (!(SceneManager._scene instanceof Scene_Load))
+                {
+                    SceneManager.push(Scene_Load);
+                }
+                break;
+            case quickSaveKey:
+                if (DataManager.saveGame(quickSaveSlotNumber))
+                {
+                    console.log("Quick save success");
+                    // TODO: Make gui box with text, and remove it after 2 - 3 seconds
+                    //SceneManager._scene.addChild(sprite);
+                    //Game_Interpreter.prototype.wait(100000000000000000000n);
+                    //SceneManager._scene.removeChild(sprite);
                 }
                 else
                 {
-                    if (event.key == saveKey)
-                    {
-                        if (!(SceneManager._scene instanceof Scene_Save))
-                        {
-                            SceneManager.push(Scene_Save);
-                        }
-                    }
-                    else
-                    {
-                        if (event.key == loadKey)
-                        {
-                            if (!(SceneManager._scene instanceof Scene_Load))
-                            {
-                                SceneManager.push(Scene_Load);
-                            }
-                        }
-                        else
-                        {
-                            if (event.key == quickSaveKey)
-                            {
-                                if (DataManager.saveGame(quickSaveSlotNumber))
-                                {
-                                    console.log("Quick save success");
-                                    // TODO: Make gui box with text, and remove it after 2 - 3 seconds
-                                    //SceneManager._scene.addChild(sprite);
-                                    //Game_Interpreter.prototype.wait(100000000000000000000n);
-                                    //SceneManager._scene.removeChild(sprite);
-                                }
-                                else
-                                {
-                                    console.log("Quick save end with error");
-                                }
-                            }
-                        }
-                    }
+                    console.log("Quick save end with error");
                 }
-            }
+                break;
+
         }
     }
     
@@ -153,7 +137,10 @@
         {    
             this.clear();
         }
-        CheckHotKeys(event);
+        if (!(SceneManager._scene instanceof Scene_Title))
+        {
+            CheckHotKeys(event);
+        }
         if (this._shouldPreventDefault(event.keyCode)) 
         {
             event.preventDefault();
